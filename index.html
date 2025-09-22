@@ -160,12 +160,16 @@ h2{ font-size: clamp(1.8rem, 3.5vw, 2.6rem); line-height: 1.15; margin-bottom: .
     var(--clay-mod);
   
 }
+
+#header{
+  color:#FFFFFF;
+}
 .hero-inner{
   display:grid; grid-template-columns: .95fr .85fr; gap: clamp(2rem, 4vw, 4rem);
   align-items:center;
 }
 .hero-copy .subhead{
-  color: black;
+  color: white;
   max-width: 52ch;
   margin: 1rem 0 1.6rem;
   font-size: clamp(1rem, 1.4vw, 1.125rem);
@@ -342,6 +346,91 @@ figcaption{ margin-top:.8rem; color:var(--mute); font-weight:600; }
   .footer-grid{ grid-template-columns: 1fr; text-align:center; }
   .socials{ justify-content:center; }
 }
+
+/* Scrapbook-style collage */
+.collage {
+  position: relative;
+  width: 100%;
+  min-height: 400px;
+}
+
+.collage .portrait {
+  position: absolute;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.collage .portrait img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: var(--radius-lg);
+}
+
+/* Individual positioning and rotation */
+.collage .portrait-1 {
+  top: 0;
+  left: 0;
+  width: 48%;
+  transform: rotate(-5deg);
+  z-index: 2;
+}
+
+.collage .portrait-2 {
+  top: 20%;
+  left: 35%;
+  width: 50%;
+  transform: rotate(4deg);
+  z-index: 3;
+}
+
+.collage .portrait-3 {
+  top: 45%;
+  left: 10%;
+  width: 55%;
+  transform: rotate(-2deg);
+  z-index: 1;
+}
+
+/* Hover effect */
+.collage .portrait:hover {
+  transform: rotate(0deg) scale(1.05);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+  z-index: 10; /* bring hovered image to front */
+}
+
+/* Stamps */
+.collage .stamp {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  background: var(--shell);
+  border: 2px dashed rgba(137,80,54,0.15);
+  color: var(--clay-dark);
+  padding: 0.4rem 0.7rem;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  transform: rotate(6deg);
+}
+
+/* Responsive adjustments */
+@media (max-width: 980px){
+  .collage .portrait-1,
+  .collage .portrait-2,
+  .collage .portrait-3 {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 100%;
+    margin-bottom: 1rem;
+    transform: rotate(0deg);
+  }
+}
+
 </style>
 </head>
 <body>
@@ -379,25 +468,35 @@ figcaption{ margin-top:.8rem; color:var(--mute); font-weight:600; }
     </nav>
   </header>
 
-  <!-- ===== Hero ===== -->
-  <section id="home" class="hero">
-    <div class="hero-inner container">
-      <div class="hero-copy">
-        <h1 class="headline reveal-on-load">About Love Through The Lines</h1>
-        <p class="subhead">Our organization is dedicated to bridging educational gaps by providing resources, 
-        advocacy, and support that empower underprivileged students to achieve their full potential.</p>
-      </div>
+  <!-- ===== Hero (About Page Scrapbook Collage) ===== -->
+<section id="home" class="hero hero-about">
+  <div class="hero-inner container">
+    <div class="hero-copy">
+      <h1 id="header" class="headline reveal-on-load">About Love Through The Lines!</h1>
+      <p class="subhead">
+        Our organization is dedicated to bridging educational gaps by providing resources, 
+        advocacy, and support that empower underprivileged students to achieve their full potential.
+      </p>
+    </div>
 
-      <div class="hero-visual">
-        <!-- Replace images as needed -->
-        <div class="portrait">
-          <img src="https://i.ibb.co/chNNYk63/workingtogether.webp" alt="working together"/>
-        </div>
-        <div class="stamp">working together</div>
+    <div class="hero-visual collage">
+      <div class="portrait portrait-1">
+        <img src="https://i.ibb.co/chNNYk63/workingtogether.webp" alt="working together"/>
+        <div class="stamp">Collaboration</div>
+      </div>
+      <div class="portrait portrait-2">
+        <img src="https://i.ibb.co/tMZZFSrC/clubrush4.webp" alt="connection"/>
+        <div class="stamp">Connection</div>
+      </div>
+      <div class="portrait portrait-3">
+        <img src="https://i.ibb.co/mVhvS1St/clubrush2.webp" alt="community"/>
+        <div class="stamp">Community</div>
       </div>
     </div>
-    <div class="scallop"></div>
-  </section>
+  </div>
+  <div class="scallop"></div>
+</section>
+
 
   <!-- ===== Who We Are ===== -->
   <section id="about" class="who section fade-in">
@@ -416,7 +515,7 @@ We see education as a practical tool for long-term opportunity. It builds confid
         </p>
       </div>
       <div class="img-card">
-        <img src="https://i.ibb.co/ZzBDKDML/pexels-emily-ranquist-493228-1205651.jpg" alt="kids graduating"/>
+        <img src="https://i.ibb.co/ZzBDKDML/clubrush3.jpg" alt="clubrush3"/>
       </div>
     </div>
   </section>
